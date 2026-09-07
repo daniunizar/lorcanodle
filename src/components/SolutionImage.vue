@@ -68,8 +68,8 @@ img {
   }
 
   img {
-    max-width: 100%;
-    max-height: 68vh;
+    max-width: 80%;
+    max-height: 280px;
   }
 }
 
