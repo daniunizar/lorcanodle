@@ -65,11 +65,12 @@ img {
 @media (max-width: 480px) {
   .solution-wrapper {
     min-height: 0;
+    height: 35vh;
   }
 
   img {
-    max-width: 80%;
-    max-height: 280px;
+    max-width: 70%;
+    max-height: 35vh;
   }
 }
 
