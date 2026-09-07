@@ -8,9 +8,8 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
 
-const props = defineProps({
+defineProps({
     url: {
         required: true,
         type: String
