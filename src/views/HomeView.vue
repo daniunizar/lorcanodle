@@ -90,7 +90,6 @@ function checkSet(card){
   const randomIndex = Math.floor( Math.random() * allSetCards.value.length );
   solutionCard.value = allSetCards.value[randomIndex]; 
   image_url.value = solutionCard.value.Image; 
-  console.log(solutionCard.value); 
 }
 function newGame() {
   attempts.value = [];

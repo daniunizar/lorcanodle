@@ -1,5 +1,4 @@
 export function compareCards(selectedCard, solutionCard) {
-    console.log(solutionCard)
     return {
         card: selectedCard,
 
@@ -49,8 +48,6 @@ export function compareCards(selectedCard, solutionCard) {
 
 
 function compareYesNo(selectedValue, solutionValue) {
-    console.log(selectedValue)
-    console.log(solutionValue)
     if (selectedValue == solutionValue) {
         return 'correct';
     }
