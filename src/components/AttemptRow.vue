@@ -2,6 +2,13 @@
     <tr>
         <td class="position"> {{ position }} </td>
 
+         <td class="card-thumbnail">
+            <img
+                v-bind:src="attempt.card.Image"
+                alt=""
+            >
+        </td>
+
         <td :class="getClass(attempt.result.name)">
             {{ attempt.card.Name }}
         </td>
@@ -58,7 +65,6 @@ function getClass(result) {
 </script>
 
 <style scoped lang="scss">
-
 tr {
   border-bottom: 1px solid rgba(190, 175, 140, 0.4);
 
@@ -87,6 +93,29 @@ td {
   font-weight: 800;
 }
 
+.card-thumbnail {
+  width: 45px;
+  padding: 5px;
+
+  text-align: center;
+}
+
+.card-thumbnail img {
+  display: block;
+
+  width: 32px;
+  height: 45px;
+
+  margin: 0 auto;
+
+  object-fit: cover;
+
+  border-radius: 4px;
+
+  box-shadow:
+    0 2px 5px rgba(15, 22, 38, 0.20);
+}
+
 /* CORRECTO */
 
 .green {
@@ -113,6 +142,15 @@ td {
     padding: 10px 8px;
     font-size: 12px;
   }
-}
 
+  .card-thumbnail {
+    width: 38px;
+    padding: 4px;
+  }
+
+  .card-thumbnail img {
+    width: 26px;
+    height: 36px;
+  }
+}
 </style>

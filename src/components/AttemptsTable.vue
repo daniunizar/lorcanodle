@@ -35,6 +35,7 @@
         <thead>
           <tr>
             <th scope="col">#</th>
+            <th scope="col">Imagen</th>
             <th scope="col">Nombre</th>
             <th scope="col">Color</th>
             <th scope="col">Coste</th>
