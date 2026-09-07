@@ -17,26 +17,30 @@
 
     <main class="game-panel">
 
-      <section class="solution-section">
-        <div class="section-label">
-          CARTA OCULTA
-        </div>
+      <div class="mobile-game-row">
 
-        <div class="solution-frame">
-          <SolutionImage
-            v-bind:url="image_url"
-            v-bind:solved="solved"
+        <section class="solution-section">
+          <div class="section-label">
+            CARTA OCULTA
+          </div>
+
+          <div class="solution-frame">
+            <SolutionImage
+              v-bind:url="image_url"
+              v-bind:solved="solved"
+            />
+          </div>
+        </section>
+
+        <section class="selector-section">
+          <CardSelector
+            v-bind:cards="allSetCards"
+            v-bind:solver="solved"
+            v-on:cardSelected="addAttempt"
           />
-        </div>
-      </section>
+        </section>
 
-      <section class="selector-section">
-        <CardSelector
-          v-bind:cards="allSetCards"
-          v-bind:solver="solved"
-          v-on:cardSelected="addAttempt"
-        />
-      </section>
+      </div>
 
       <button
         v-if="solved"
@@ -179,6 +183,12 @@ h1 {
   box-shadow:
     0 22px 55px rgba(24, 30, 45, 0.18),
     inset 0 1px 0 white;
+}
+
+/* CONTENIDO DEL JUEGO */
+
+.mobile-game-row {
+  display: contents;
 }
 
 /* CARTA */
@@ -336,6 +346,31 @@ h1 {
     border-radius: 12px;
   }
 
+  /*
+   * En móvil:
+   * izquierda = buscador
+   * derecha = carta
+   */
+  .mobile-game-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    align-items: start;
+  }
+
+  .selector-section {
+    grid-column: 1;
+    grid-row: 1;
+
+    width: 100%;
+    margin: 0;
+  }
+
+  .solution-section {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
   .section-label {
     margin-bottom: 8px;
     font-size: 9px;
@@ -343,12 +378,15 @@ h1 {
 
   .solution-frame {
     min-height: 0;
-    padding: 10px;
+    height: 220px;
+
+    padding: 5px;
     border-radius: 10px;
   }
 
-  .selector-section {
-    margin-top: 18px;
+  .solution-frame img {
+    max-width: 100%;
+    max-height: 210px;
   }
 
   .new-game-button {
