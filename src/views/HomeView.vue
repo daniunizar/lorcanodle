@@ -17,30 +17,13 @@
 
     <main class="game-panel">
 
-      <div class="mobile-game-row">
-
-        <section class="solution-section">
-          <div class="section-label">
-            CARTA OCULTA
-          </div>
-
-          <div class="solution-frame">
-            <SolutionImage
-              v-bind:url="image_url"
-              v-bind:solved="solved"
-            />
-          </div>
-        </section>
-
-        <section class="selector-section">
-          <CardSelector
-            v-bind:cards="allSetCards"
-            v-bind:solver="solved"
-            v-on:cardSelected="addAttempt"
-          />
-        </section>
-
-      </div>
+      <section class="selector-section">
+        <CardSelector
+          v-bind:cards="allSetCards"
+          v-bind:solver="solved"
+          v-on:cardSelected="addAttempt"
+        />
+      </section>
 
       <button
         v-if="solved"
@@ -65,12 +48,10 @@
 import { ref, onMounted } from 'vue';
 import CardSelector from '@/components/CardSelector.vue';
 import AttemptsTable from '@/components/AttemptsTable.vue';
-import SolutionImage from '@/components/SolutionImage.vue';
 import allCards from '@/data/cards.json';
 import { compareCards } from '@/utils/cardComparison';
 
 const allSetCards = ref([]);
-const image_url = ref('');
 const solved = ref(false);
 const attempts = ref([]);
 const solutionCard = ref(null);
@@ -79,6 +60,7 @@ onMounted( () => {
   allSetCards.value = allCards.filter(checkSet)
   startGame();
 })
+
 function checkSet(card){
   return (card.Set_ID == "FAB" 
   || card.Set_ID == "WHI"
@@ -86,19 +68,21 @@ function checkSet(card){
   || card.Set_ID == "WUN"
   || card.Set_ID == "AOV") && card.Type == "Character"
 }
- function addAttempt(selectedCard) {
+
+function addAttempt(selectedCard) {
   const attempt = compareCards(selectedCard, solutionCard.value);
   attempts.value.push(attempt);
-   if (attempt.solved === 'correct') {
+
+  if (attempt.solved === 'correct') {
     solved.value = true;
   }
- }
+}
 
- function startGame() { 
+function startGame() { 
   const randomIndex = Math.floor( Math.random() * allSetCards.value.length );
   solutionCard.value = allSetCards.value[randomIndex]; 
-  image_url.value = solutionCard.value.Image; 
 }
+
 function newGame() {
   attempts.value = [];
   solved.value = false;
@@ -189,57 +173,11 @@ h1 {
     inset 0 1px 0 white;
 }
 
-/* CONTENIDO DEL JUEGO */
-
-.mobile-game-row {
-  display: contents;
-}
-
-/* CARTA */
-
-.solution-section {
-  text-align: center;
-}
-
-.section-label {
-  margin-bottom: 12px;
-
-  color: #81765f;
-
-  font-family: 'Cinzel', serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2px;
-}
-
-.solution-frame {
-  min-height: 410px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 15px;
-
-  border: 1px solid rgba(140, 104, 31, 0.25);
-  border-radius: 15px;
-
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(255, 255, 255, 0.8),
-      rgba(219, 208, 184, 0.38)
-    );
-
-  box-shadow:
-    inset 0 1px 5px rgba(60, 50, 30, 0.08);
-}
-
 /* BUSCADOR */
 
 .selector-section {
   width: min(700px, 100%);
-  margin: 28px auto 0;
+  margin: 0 auto;
 }
 
 /* BOTÓN */
@@ -309,10 +247,6 @@ h1 {
     border-radius: 15px;
   }
 
-  .solution-frame {
-    min-height: 350px;
-  }
-
   .results-section {
     margin-top: 28px;
   }
@@ -348,49 +282,6 @@ h1 {
   .game-panel {
     padding: 12px 10px 18px;
     border-radius: 12px;
-  }
-
-  /*
-   * En móvil:
-   * izquierda = buscador
-   * derecha = carta
-   */
-  .mobile-game-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    align-items: start;
-  }
-
-  .selector-section {
-    grid-column: 1;
-    grid-row: 1;
-
-    width: 100%;
-    margin: 0;
-  }
-
-  .solution-section {
-    grid-column: 2;
-    grid-row: 1;
-  }
-
-  .section-label {
-    margin-bottom: 8px;
-    font-size: 9px;
-  }
-
-  .solution-frame {
-    min-height: 0;
-    height: 220px;
-
-    padding: 5px;
-    border-radius: 10px;
-  }
-
-  .solution-frame img {
-    max-width: 100%;
-    max-height: 210px;
   }
 
   .new-game-button {
