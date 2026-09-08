@@ -80,7 +80,11 @@ onMounted( () => {
   startGame();
 })
 function checkSet(card){
-  return card.Set_ID == "AOV" && card.Type == "Character"
+  return (card.Set_ID == "FAB" 
+  || card.Set_ID == "WHI"
+  || card.Set_ID == "WIN"
+  || card.Set_ID == "WUN"
+  || card.Set_ID == "AOV") && card.Type == "Character"
 }
  function addAttempt(selectedCard) {
   const attempt = compareCards(selectedCard, solutionCard.value);

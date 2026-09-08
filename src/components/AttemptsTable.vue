@@ -37,6 +37,7 @@
             <th scope="col">#</th>
             <th scope="col">Imagen</th>
             <th scope="col">Nombre</th>
+            <th scope="col">Edición</th>
             <th scope="col">Rareza</th>
             <th scope="col">Color</th>
             <th scope="col">Coste</th>

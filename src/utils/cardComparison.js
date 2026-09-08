@@ -8,14 +8,19 @@ export function compareCards(selectedCard, solutionCard) {
                 solutionCard.Name
             ),
 
-            color: comparePartials(
-                selectedCard.Color,
-                solutionCard.Color
+            set_name: compareYesNo(
+                selectedCard.Set_Name,
+                solutionCard.Set_Name
             ),
 
             rarity: compareYesNo(
                 selectedCard.Rarity,
                 solutionCard.Rariry
+            ),
+
+            color: comparePartials(
+                selectedCard.Color,
+                solutionCard.Color
             ),
 
             inkable: compareYesNo(
