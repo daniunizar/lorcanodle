@@ -62,17 +62,30 @@ export function compareCards(selectedCard, solutionCard) {
 }
 
 
-function compareName(selectedValue, solutionValue){
+function compareName(selectedValue, solutionValue) {
+
     if (selectedValue == solutionValue) {
         return 'correct';
     }
-    const splited_selected_name = selectedValue.split('-');
-    const first_selected_name = splited_selected_name[0];
-    const splited_solution_name = solutionValue.split('-');
-    const first_solution_name = splited_solution_name[0];
-    if(first_selected_name == first_solution_name){
-        return 'partial'
+
+    const selectedNames = selectedValue
+        .split('-')[0]
+        .split('&')
+        .map(name => name.trim());
+
+    const solutionNames = solutionValue
+        .split('-')[0]
+        .split('&')
+        .map(name => name.trim());
+
+    const partial = selectedNames.some(selectedName =>
+        solutionNames.includes(selectedName)
+    );
+
+    if (partial) {
+        return 'partial';
     }
+
     return 'incorrect';
 }
 
