@@ -10,7 +10,7 @@
 
       <div class="edition">
         <span></span>
-        Core edition
+        Core Edition
         <span></span>
       </div>
     </header>
