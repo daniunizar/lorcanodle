@@ -20,7 +20,7 @@
       <section class="selector-section">
         <CardSelector
           v-bind:cards="allSetCards"
-          v-bind:solver="solved"
+          v-bind:solved="solved"
           v-on:cardSelected="addAttempt"
         />
       </section>
