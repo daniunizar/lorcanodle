@@ -1,10 +1,15 @@
 <template>
+  <Analytics />
   <nav>
     <router-link to="/">Home</router-link>
     <router-link to="/about">About</router-link>
   </nav>
   <router-view/>
 </template>
+
+<script setup>
+import { Analytics } from '@vercel/analytics/vue';
+</script>
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap');
