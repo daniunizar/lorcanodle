@@ -13,6 +13,11 @@ export function compareCards(selectedCard, solutionCard) {
                 solutionCard.Color
             ),
 
+            rarity: compareYesNo(
+                selectedCard.Rarity,
+                solutionCard.Rariry
+            ),
+
             cost: compareHigherLower(
                 selectedCard.Cost,
                 solutionCard.Cost

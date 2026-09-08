@@ -12,6 +12,10 @@
         <td :class="getClass(attempt.result.name)">
             {{ attempt.card.Name }}
         </td>
+        
+        <td :class="getClass(attempt.result.rarity)">
+            {{ attempt.card.Rarity }}
+        </td>
 
         <td :class="getClass(attempt.result.color)">
             {{ attempt.card.Color }}
