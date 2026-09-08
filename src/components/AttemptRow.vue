@@ -86,7 +86,7 @@ tr {
 }
 
 td {
-  padding: 12px 10px;
+  padding: 12px 8px;
 
   border-right: 1px solid rgba(190, 175, 140, 0.25);
 
@@ -98,6 +98,17 @@ td {
   &:last-child {
     border-right: 0;
   }
+}
+
+/* COLUMNAS DE TEXTO */
+
+td:nth-child(3),
+td:nth-child(4),
+td:nth-child(9) {
+  white-space: normal;
+
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
 .position {
@@ -151,8 +162,8 @@ td {
 
 @media (max-width: 480px) {
   td {
-    padding: 10px 8px;
-    font-size: 12px;
+    padding: 9px 5px;
+    font-size: 11px;
   }
 
   .card-thumbnail {

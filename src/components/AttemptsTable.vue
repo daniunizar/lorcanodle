@@ -67,6 +67,7 @@
 
 <script setup>
 import AttemptRow from '@/components/AttemptRow.vue';
+
 defineProps({
     attempts: {
         type: Array,
@@ -170,7 +171,7 @@ h3 {
 .table-container {
   width: 100%;
 
-  overflow-x: auto;
+  overflow-x: hidden;
 
   border: 1px solid #cfc3a5;
   border-radius: 12px;
@@ -183,7 +184,8 @@ h3 {
 
 table {
   width: 100%;
-  min-width: 760px;
+
+  table-layout: fixed;
 
   border-collapse: collapse;
 
@@ -191,7 +193,7 @@ table {
 }
 
 th {
-  padding: 13px 10px;
+  padding: 13px 8px;
 
   background:
     linear-gradient(
@@ -208,13 +210,69 @@ th {
   font-size: 10px;
   font-weight: 600;
 
-  letter-spacing: 0.4px;
+  letter-spacing: 0.3px;
 
-  white-space: nowrap;
+  white-space: normal;
 
   &:last-child {
     border-right: 0;
   }
+}
+
+/* ANCHOS DE COLUMNAS */
+
+th:nth-child(1),
+td:nth-child(1) {
+  width: 4%;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  width: 7%;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+  width: 15%;
+}
+
+th:nth-child(4),
+td:nth-child(4) {
+  width: 11%;
+}
+
+th:nth-child(5),
+td:nth-child(5) {
+  width: 9%;
+}
+
+th:nth-child(6),
+td:nth-child(6) {
+  width: 8%;
+}
+
+th:nth-child(7),
+td:nth-child(7) {
+  width: 7%;
+}
+
+th:nth-child(8),
+td:nth-child(8) {
+  width: 8%;
+}
+
+th:nth-child(9),
+td:nth-child(9) {
+  width: 13%;
+}
+
+th:nth-child(10),
+td:nth-child(10),
+th:nth-child(11),
+td:nth-child(11),
+th:nth-child(12),
+td:nth-child(12) {
+  width: 6%;
 }
 
 /* TABLET */
@@ -225,8 +283,12 @@ th {
     font-size: 20px;
   }
 
+  .table-container {
+    overflow-x: auto;
+  }
+
   table {
-    min-width: 720px;
+    min-width: 700px;
   }
 }
 
@@ -258,12 +320,12 @@ th {
   }
 
   table {
-    min-width: 700px;
+    min-width: 650px;
   }
 
   th {
-    padding: 10px 8px;
-    font-size: 9px;
+    padding: 9px 5px;
+    font-size: 8px;
   }
 }
 
