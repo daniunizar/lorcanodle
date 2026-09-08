@@ -3,7 +3,7 @@ export function compareCards(selectedCard, solutionCard) {
         card: selectedCard,
 
         result: {
-            name: compareYesNo(
+            name: compareName(
                 selectedCard.Name,
                 solutionCard.Name
             ),
@@ -15,7 +15,7 @@ export function compareCards(selectedCard, solutionCard) {
 
             rarity: compareYesNo(
                 selectedCard.Rarity,
-                solutionCard.Rariry
+                solutionCard.Rarity
             ),
 
             color: comparePartials(
@@ -61,6 +61,20 @@ export function compareCards(selectedCard, solutionCard) {
     };
 }
 
+
+function compareName(selectedValue, solutionValue){
+    if (selectedValue == solutionValue) {
+        return 'correct';
+    }
+    const splited_selected_name = selectedValue.split('-');
+    const first_selected_name = splited_selected_name[0];
+    const splited_solution_name = solutionValue.split('-');
+    const first_solution_name = splited_solution_name[0];
+    if(first_selected_name == first_solution_name){
+        return 'partial'
+    }
+    return 'incorrect';
+}
 
 function compareYesNo(selectedValue, solutionValue) {
     if (selectedValue == solutionValue) {
