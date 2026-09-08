@@ -10,7 +10,7 @@
 
       <div class="edition">
         <span></span>
-        Attack of the Vine
+        Core edition
         <span></span>
       </div>
     </header>
