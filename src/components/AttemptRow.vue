@@ -25,6 +25,10 @@
             {{ attempt.result.cost === 'equals' ? attempt.card.Cost : attempt.result.cost === 'greater' ? '<' + attempt.card.Cost : '>' + attempt.card.Cost }}
         </td>
 
+        <td :class="getClass(attempt.result.inkable)">
+            {{ attempt.card.Inkable==true?"Sí":"No" }}
+        </td>
+
         <td :class="getClass(attempt.result.classifications)">
             {{ attempt.card.Classifications}}
         </td>

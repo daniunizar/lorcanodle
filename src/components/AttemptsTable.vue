@@ -40,6 +40,7 @@
             <th scope="col">Rareza</th>
             <th scope="col">Color</th>
             <th scope="col">Coste</th>
+            <th scope="col">Entintable</th>
             <th scope="col">Subtipos</th>
             <th scope="col">Fuerza</th>
             <th scope="col">Voluntad</th>

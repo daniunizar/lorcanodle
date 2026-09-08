@@ -18,6 +18,11 @@ export function compareCards(selectedCard, solutionCard) {
                 solutionCard.Rariry
             ),
 
+            inkable: compareYesNo(
+                selectedCard.Inkable,
+                solutionCard.Inkable
+            ),
+
             cost: compareHigherLower(
                 selectedCard.Cost,
                 solutionCard.Cost
