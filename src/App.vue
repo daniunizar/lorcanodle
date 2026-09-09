@@ -2,6 +2,7 @@
   <Analytics />
   <nav>
     <router-link to="/">Home</router-link>
+    <router-link to="/war-of-prices">War of Prices</router-link>
     <router-link to="/about">About</router-link>
   </nav>
   <router-view/>

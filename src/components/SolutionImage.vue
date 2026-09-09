@@ -1,25 +1,29 @@
 <template>
+
   <div class="solution-wrapper">
+
     <img
-      v-bind:src="url"
-      v-bind:class="{ hidden: !solved }"
-    >
+      v-bind:src="src"
+    />
+
   </div>
+
 </template>
+
 
 <script setup>
 
 defineProps({
-    url: {
-        required: true,
-        type: String
-    },
-    solved: {
-        required: true,
-        type: Boolean
-    }
+
+  src: {
+    required: true,
+    type: String
+  }
+
 })
+
 </script>
+
 
 <style scoped lang="scss">
 
@@ -28,9 +32,12 @@ defineProps({
   min-height: 400px;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 }
+
 
 img {
   display: block;
@@ -48,30 +55,44 @@ img {
   transition: opacity 0.3s ease;
 }
 
-.hidden {
-  visibility: hidden;
-}
 
 @media (max-width: 768px) {
+
   .solution-wrapper {
+
     min-height: 340px;
+
   }
 
+
   img {
+
     max-height: 340px;
+
   }
+
 }
 
+
 @media (max-width: 480px) {
+
   .solution-wrapper {
+
     min-height: 0;
+
     height: 35vh;
+
   }
 
+
   img {
+
     max-width: 70%;
+
     max-height: 35vh;
+
   }
+
 }
 
 </style>
