@@ -56,7 +56,7 @@
         </div>
 
         <div>
-          <h2>¿Cómo se juega?</h2>
+          <h2>¿Cómo se juega a Adivina la Carta?</h2>
 
           <p>
             Escribe el nombre de una carta y selecciónala entre las
@@ -95,6 +95,23 @@
 
       </section>
 
+      <section class="about-section">
+
+        <div class="section-icon">
+          ✧
+        </div>
+
+        <div>
+          <h2>¿Cómo se juega a Guerra de Precios?</h2>
+
+          <p>
+            Se te mostrarán dos cartas al azar de cualquier expansión y tendrás que escoger entre ellas cuál es la más cara, o si consideras que tienen el mismo precio.
+          </p>
+          <p>Si aciertas, se visualizarán los precios y continuarás jugando con dos cartas nuevas en una nueva ronda.</p>
+          <p>Si fallas, se visualizará el precio y se te informará del número de rondas acertadas hasta el momento.</p>
+        </div>
+
+      </section>
 
       <section class="about-section">
 
