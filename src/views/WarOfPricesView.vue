@@ -1,211 +1,220 @@
 <template>
   <div class="game-container">
 
-<HeaderComponent
-  v-bind:title="title"
-  v-bind:edition="edition"
-/>
+    <HeaderComponent
+      v-bind:title="title"
+      v-bind:edition="edition"
+    />
 
-<main class="game-panel">
+    <main class="game-panel">
 
-  <!-- Pregunta -->
-  <label class="game-question">
-    ¿Cuál es más cara?
-  </label>
+      <!-- Pregunta -->
+      <div class="game-question">
 
+        <span class="round-label">
+          Ronda {{ round }}
+        </span>
 
-  <!-- ========================= -->
-  <!-- CARGANDO PARTIDA           -->
-  <!-- ========================= -->
-
-  <div
-    v-if="isLoading"
-    class="loading-panel"
-  >
-
-    <div class="loading-spinner"></div>
-
-    <div class="loading-message">
-      Preparando partida...
-    </div>
-
-  </div>
-
-
-  <!-- ========================= -->
-  <!-- CONTENIDO DEL JUEGO        -->
-  <!-- ========================= -->
-
-  <template v-else>
-
-    <!-- ========================= -->
-    <!-- CARTAS                     -->
-    <!-- ========================= -->
-
-    <div class="cards-grid">
-
-      <!-- Carta A -->
-      <div class="card-option">
-
-        <SolutionImage
-          v-bind:src="srcCardA"
-        />
-
-        <!-- Precio oculto hasta resolver -->
-        <span
-          v-if="showResult"
-          class="card-price"
-        >
-          {{ priceCardA }}$
+        <span class="question-label">
+          ¿Cuál es más cara?
         </span>
 
       </div>
 
 
-      <!-- Espacio central -->
-      <div></div>
+      <!-- ========================= -->
+      <!-- CARGANDO PARTIDA           -->
+      <!-- ========================= -->
 
-
-      <!-- Carta B -->
-      <div class="card-option">
-
-        <SolutionImage
-          v-bind:src="srcCardB"
-        />
-
-        <!-- Precio oculto hasta resolver -->
-        <span
-          v-if="showResult"
-          class="card-price"
-        >
-          {{ priceCardB }}$
-        </span>
-
-      </div>
-
-    </div>
-
-
-    <!-- ========================= -->
-    <!-- BOTONES DE RESPUESTA       -->
-    <!-- ========================= -->
-
-    <div
-      v-if="!showResult"
-      class="buttons-grid"
-    >
-
-      <!-- Botón Carta A -->
-      <div class="button-option">
-
-        <button
-          class="solution-button"
-          v-bind:disabled="isLoading"
-          v-on:click="selectedOption('cardA')"
-        >
-          Card A
-        </button>
-
-      </div>
-
-
-      <!-- Botón empate -->
-      <div class="button-option">
-
-        <button
-          class="solution-button"
-          v-bind:disabled="isLoading"
-          v-on:click="selectedOption('equals')"
-        >
-          =
-        </button>
-
-      </div>
-
-
-      <!-- Botón Carta B -->
-      <div class="button-option">
-
-        <button
-          class="solution-button"
-          v-bind:disabled="isLoading"
-          v-on:click="selectedOption('cardB')"
-        >
-          Card B
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <!-- ========================= -->
-    <!-- RESULTADO                 -->
-    <!-- ========================= -->
-
-    <div
-      v-if="showResult"
-      class="result-panel"
-    >
-
-      <!-- Acierto -->
       <div
-        v-if="isCorrect"
-        class="result-message success"
+        v-if="isLoading"
+        class="loading-panel"
       >
-        ¡Acertaste!
+
+        <div class="loading-spinner"></div>
+
+        <div class="loading-message">
+          Preparando partida...
+        </div>
+
       </div>
 
 
-      <!-- Fallo -->
-      <div
-        v-else
-        class="result-message error"
-      >
-        ¡Fallaste!
-      </div>
+      <!-- ========================= -->
+      <!-- CONTENIDO DEL JUEGO        -->
+      <!-- ========================= -->
+
+      <template v-else>
+
+        <!-- ========================= -->
+        <!-- CARTAS                     -->
+        <!-- ========================= -->
+
+        <div class="cards-grid">
+
+          <!-- Carta A -->
+          <div class="card-option">
+
+            <SolutionImage
+              v-bind:src="srcCardA"
+            />
+
+            <!-- Precio oculto hasta resolver -->
+            <span
+              v-if="showResult"
+              class="card-price"
+            >
+              {{ priceCardA }}$
+            </span>
+
+          </div>
 
 
-      <!-- Siguiente ronda -->
-      <button
-        v-if="isCorrect"
-        class="solution-button next-button"
-        v-on:click="nextRound"
-      >
-        Siguiente
-      </button>
+          <!-- Espacio central -->
+          <div></div>
 
 
-      <!-- Fin de partida -->
-      <div
-        v-else
-        class="game-over"
-      >
+          <!-- Carta B -->
+          <div class="card-option">
 
-        <div class="attempts-message">
-          Has completado
-          <strong>{{ successfulAttempts }}</strong>
-          {{ successfulAttempts === 1 ? 'intento' : 'intentos' }}
-          correctamente.
+            <SolutionImage
+              v-bind:src="srcCardB"
+            />
+
+            <!-- Precio oculto hasta resolver -->
+            <span
+              v-if="showResult"
+              class="card-price"
+            >
+              {{ priceCardB }}$
+            </span>
+
+          </div>
+
         </div>
 
 
-        <button
-          class="solution-button new-game-button"
-          v-on:click="startNewGame"
+        <!-- ========================= -->
+        <!-- BOTONES DE RESPUESTA       -->
+        <!-- ========================= -->
+
+        <div
+          v-if="!showResult"
+          class="buttons-grid"
         >
-          Nueva partida
-        </button>
 
-      </div>
+          <!-- Botón Carta A -->
+          <div class="button-option">
 
-    </div>
+            <button
+              class="solution-button"
+              v-bind:disabled="isLoading"
+              v-on:click="selectedOption('cardA')"
+            >
+              Card A
+            </button>
 
-  </template>
+          </div>
 
-</main>
-</div>
+
+          <!-- Botón empate -->
+          <div class="button-option">
+
+            <button
+              class="solution-button"
+              v-bind:disabled="isLoading"
+              v-on:click="selectedOption('equals')"
+            >
+              =
+            </button>
+
+          </div>
+
+
+          <!-- Botón Carta B -->
+          <div class="button-option">
+
+            <button
+              class="solution-button"
+              v-bind:disabled="isLoading"
+              v-on:click="selectedOption('cardB')"
+            >
+              Card B
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- RESULTADO                  -->
+        <!-- ========================= -->
+
+        <div
+          v-if="showResult"
+          class="result-panel"
+        >
+
+          <!-- Acierto -->
+          <div
+            v-if="isCorrect"
+            class="result-message success"
+          >
+            ¡Acertaste!
+          </div>
+
+
+          <!-- Fallo -->
+          <div
+            v-else
+            class="result-message error"
+          >
+            ¡Fallaste!
+          </div>
+
+
+          <!-- Siguiente ronda -->
+          <button
+            v-if="isCorrect"
+            class="solution-button next-button"
+            v-on:click="nextRound"
+          >
+            Siguiente
+          </button>
+
+
+          <!-- Fin de partida -->
+          <div
+            v-else
+            class="game-over"
+          >
+
+            <div class="attempts-message">
+              Has completado
+              <strong>{{ successfulAttempts }}</strong>
+              {{ successfulAttempts === 1 ? 'ronda' : 'rondas' }}
+              correctamente
+            </div>
+
+
+            <button
+              class="solution-button new-game-button"
+              v-on:click="startNewGame"
+            >
+              Nueva partida
+            </button>
+
+          </div>
+
+        </div>
+
+      </template>
+
+    </main>
+  </div>
 </template>
+
 
 <script setup>
 
@@ -248,7 +257,7 @@ const priceCardB = ref(null);
 // =========================
 
 // Número de ronda actual
-let round = 1;
+const round = ref(1);
 
 // Número de respuestas correctas consecutivas
 const successfulAttempts = ref(0);
@@ -278,6 +287,33 @@ let edition = 'Infinity Edition';
 
 
 // =========================
+// VALIDAR CARTA
+// =========================
+
+function isPlayableCard(card) {
+
+  const imageUrl =
+    card?.image_uris?.digital?.normal;
+
+  const price =
+    card?.prices?.usd;
+
+
+  return (
+    typeof imageUrl === 'string' &&
+    imageUrl.trim() !== '' &&
+
+    price !== null &&
+    price !== undefined &&
+    price !== '' &&
+
+    Number.isFinite(Number(price))
+  );
+
+}
+
+
+// =========================
 // OBTENER CARTAS DE LA API
 // =========================
 
@@ -294,21 +330,30 @@ async function getRandomCardsFromApi() {
   const data = await response.json();
 
 
-  // Solo cartas con precio
-  const cardsWithPrice = data.results.filter(card =>
-    card.prices &&
-    card.prices.usd !== null &&
-    card.prices.usd !== ''
+  // Solo cartas válidas para jugar:
+  // - Imagen válida
+  // - Precio USD válido
+  const playableCards = data.results.filter(
+    isPlayableCard
   );
 
 
+  // Comprobar que tenemos suficientes cartas
+  if (playableCards.length < 2) {
+    throw new Error(
+      'No hay suficientes cartas válidas para iniciar la partida'
+    );
+  }
+
+
   // Mezclar cartas
-  const shuffled = [...cardsWithPrice].sort(
+  const shuffled = [...playableCards].sort(
     () => Math.random() - 0.5
   );
 
 
   return shuffled;
+
 }
 
 
@@ -354,7 +399,7 @@ async function startNewGame() {
   try {
 
     // Reiniciar partida
-    round = 1;
+    round.value = 1;
 
     successfulAttempts.value = 0;
 
@@ -364,7 +409,7 @@ async function startNewGame() {
 
 
     // Obtener primera pareja
-    getNextPairOfCards(round);
+    getNextPairOfCards(round.value);
 
   } catch (error) {
 
@@ -504,9 +549,9 @@ function selectedOption(optionSelected) {
 
 function nextRound() {
 
-  round++;
+  round.value++;
 
-  getNextPairOfCards(round);
+  getNextPairOfCards(round.value);
 
   // Ocultar precios y resultado
   showResult.value = false;
@@ -514,6 +559,7 @@ function nextRound() {
 }
 
 </script>
+
 
 <style scoped>
 
@@ -530,7 +576,7 @@ function nextRound() {
 .game-panel {
   position: relative;
 
-  padding: 70px 30px 30px;
+  padding: 75px 30px 30px;
 
   border: 2px solid #c9a227;
   border-radius: 20px;
@@ -554,19 +600,42 @@ function nextRound() {
 .game-question {
   position: absolute;
 
-  top: 25px;
+  top: 15px;
   left: 50%;
 
   transform: translateX(-50%);
 
-  font-family: 'Cinzel', serif;
+  display: flex;
 
-  font-size: 20px;
-  font-weight: bold;
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 2px;
+
+  font-family: 'Cinzel', serif;
 
   text-align: center;
 
   white-space: nowrap;
+}
+
+
+.round-label {
+  font-size: 14px;
+
+  font-weight: normal;
+
+  color: #666;
+}
+
+
+.question-label {
+  font-size: 20px;
+
+  font-weight: bold;
+
+  color: #1d3557;
 }
 
 
@@ -851,14 +920,19 @@ function nextRound() {
   .game-panel {
 
     padding:
-      60px 20px 20px;
+      65px 20px 20px;
 
   }
 
 
   .game-question {
 
-    top: 20px;
+    top: 12px;
+
+  }
+
+
+  .question-label {
 
     font-size: 18px;
 
@@ -903,14 +977,26 @@ function nextRound() {
   .game-panel {
 
     padding:
-      55px 10px 18px;
+      60px 10px 18px;
 
   }
 
 
   .game-question {
 
-    top: 18px;
+    top: 10px;
+
+  }
+
+
+  .round-label {
+
+    font-size: 12px;
+
+  }
+
+
+  .question-label {
 
     font-size: 16px;
 
