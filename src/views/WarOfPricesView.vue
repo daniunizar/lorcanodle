@@ -306,6 +306,7 @@ function isPlayableCard(card) {
     price !== null &&
     price !== undefined &&
     price !== '' &&
+    price > 1 &&
 
     Number.isFinite(Number(price))
   );
@@ -336,7 +337,6 @@ async function getRandomCardsFromApi() {
   const playableCards = data.results.filter(
     isPlayableCard
   );
-
 
   // Comprobar que tenemos suficientes cartas
   if (playableCards.length < 2) {
