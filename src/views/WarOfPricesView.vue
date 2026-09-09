@@ -1,7 +1,6 @@
 <template>
   <div class="game-container">
 
-```
 <HeaderComponent
   v-bind:title="title"
   v-bind:edition="edition"
@@ -205,9 +204,7 @@
   </template>
 
 </main>
-```
-
-  </div>
+</div>
 </template>
 
 <script setup>
